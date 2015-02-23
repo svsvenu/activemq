@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>gov.irs.aca.brmg</groupId>
+  <artifactId>activemq-test</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+<dependencies>
+ 
+ <dependency>
+	<groupId>commons-httpclient</groupId>
+	<artifactId>commons-httpclient</artifactId>
+	<version>3.1</version>
+</dependency>
+
+<dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+        <version>6.0</version>
+        <scope>provided</scope>
+    </dependency> 
+    
+    <dependency>
+  <groupId>org.jboss.ejb3</groupId>
+  <artifactId>jboss-ejb3-ext-api</artifactId>
+  <version>2.1.0</version>
+  <scope>provided</scope>
+</dependency>
+
+
+ </dependencies>
+ <build>
+<plugins>
+	<plugin>
+		<groupId>org.jboss.as.plugins</groupId>
+		<artifactId>jboss-as-maven-plugin</artifactId>
+		<version>7.5.Final</version>
+		<executions>
+			<execution>
+				<id>deploy</id>
+				<phase>install</phase>
+				<goals>
+					<goal>deploy</goal>
+				</goals>
+				<configuration>
+					<filename>${project.build.finalName}.war</filename>
+					<skip>false</skip>
+				</configuration>
+			
+			</execution>
+			<execution>
+				<id>undeploy</id>
+				<phase>clean</phase>
+				<goals>
+					<goal>undeploy</goal>
+				</goals>
+				<configuration>
+					<filename>${project.build.finalName}.war</filename>
+					<skip>false</skip>
+				</configuration>
+			</execution>
+		
+		</executions>
+	
+	</plugin>
+	
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-war-plugin</artifactId>
+		<configuration>
+			<failOnMissingWebXml>false</failOnMissingWebXml>
+		</configuration>
+	
+	</plugin>
+
+</plugins> 
+ </build>
+ 
+</project>
