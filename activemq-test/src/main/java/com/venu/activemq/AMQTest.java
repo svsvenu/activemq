@@ -34,8 +34,10 @@ public class AMQTest extends HttpServlet {
         try {
         	
         	System.out.println("called get");
+        	
+        	sendResponse(response, "message sent succesfully");
 
-			sendMessage("test");
+			sendMessage("test message");
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,7 +48,10 @@ public class AMQTest extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-			sendMessage("test");
+			sendMessage("test message");
+			
+        	sendResponse(response, "message sent succesfully");
+
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -121,4 +126,9 @@ public class AMQTest extends HttpServlet {
         }
     }
 
+    public void sendResponse(HttpServletResponse response, String message) throws IOException{
+    	
+    	 response.getWriter().write(message);
+    }
+    
 }
